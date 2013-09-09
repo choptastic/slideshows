@@ -54,6 +54,8 @@ Let's hope `somefunction()` actually returns an integer.
   * list
   * tuple
 
+---
+
 # Other Erlang non-types worth mentioning
 
   * boolean
@@ -98,9 +100,10 @@ Atoms are like strings, but not like strings.
 # Atoms, continued
 
   * More like C `enums`, 
-  * Commonly used in pattern matching
-  * **Very Fast**: O(1) comparison
-  * guard: `is_atom`
+  * All atoms are unique. No atom equals another atom, unless it is the *same* atom.
+  * Commonly used in pattern matching.
+  * **Very Fast**: O(1) comparison.
+  * guard: `is_atom()`
 
 ---
 
@@ -130,43 +133,124 @@ Use `erl +t`
 
 ---
 
-## If you're creating atoms on the fly, you're probably only delaying the inevitable
+### If you need to increase the atom limit becayse you're creating atoms on the fly, you're only delaying the inevitable
 
 ![...gonna have a bad time](/slideshows/atoms-bad-time.jpg)
 
 ---
 
-# pid (Process Identifier)
+# pid
 
+  * Process Identifier
   * `self()` returns the pid of the current process
+  * `spawn()` and similar functions return the pid of the spawned process.
   * `Pid ! Msg` sends `Msg` to the process `Pid`
   * node-agnostic: Doesn't matter what node a Process is running on, if it's in the cluster, it can be communicated with.
-  * guard: `is_pid`
+  * guard: `is_pid()`
+  * Looks like: `<0.39.0>`
 
 ---
 
-# fun (Anonyous Function)
+# pid, continued
 
+If the first number in a pid is `0`, then that means the pid is local to the current node.
+
+---
+
+# pid example
+
+```erlang
+> Pid = spawn(fun() ->
+> 	receive
+> 		Msg -> io:format("Received: ~p~n",[Msg])
+> 	end
+> end).
+<0.40.0>
+> Pid ! a_message.
+a_message.
+Received: a_message
+```
+
+---
+
+# fun
+
+## Anonymous Function:
+```erlang
+> MyFun = fun(A) -> A * 2 end.
+> MyFun(2).
+4.
+```
+
+---
+
+# fun
+
+## Closure:
+
+```erlang
+> B = 4.
+> MyFun = fun(A) -> A * B end.
+> MyFun(2).
+8.
+```
+
+---
+
+# fun
+
+## Named function in the same module:
+
+```erlang
+> MyFun = fun function/2.
+> MyFun(X,Y).
+```
+
+---
+
+# fun
+
+## Named function in another module:
+
+```erlang
+> MyFun = fun module:function/2.
+> MyFun(X,Y).
+```
 ---
 
 # reference
 
+  * Created with `make_ref/0`
+  * Unique for the age of the node.
+  * Unique across nodes.
+  * Used for making unique references.
 
 ---
 
 #port
 
----
-
-# binary
+  * Port Identifier 
+  * Used for communicating with other OS processes (making drivers)
 
 ---
 
 # list
 
+  * A list is a linked-list of Erlang terms. 
+  * Each element can have any type.
+  * `[1, 50, Fun, [an, inner, list], "something else"]`
+
 ---
 
 # tuple
+
+---
+
+# binary
+
+  * A binary is a list of bits and bytes.
+  * `<<[5,10
+
 
 ---
 
