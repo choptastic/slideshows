@@ -56,7 +56,7 @@ Let's hope `somefunction()` actually returns an integer.
 
 ---
 
-# Other Erlang non-types worth mentioning
+## Other non-types worth mentioning
 
   * boolean
   * record
@@ -133,8 +133,6 @@ Use `erl +t`
 
 ---
 
-### If you need to increase the atom limit becayse you're creating atoms on the fly, you're only delaying the inevitable
-
 ![...gonna have a bad time](/slideshows/atoms-bad-time.jpg)
 
 ---
@@ -145,7 +143,6 @@ Use `erl +t`
   * `self()` returns the pid of the current process
   * `spawn()` and similar functions return the pid of the spawned process.
   * `Pid ! Msg` sends `Msg` to the process `Pid`
-  * node-agnostic: Doesn't matter what node a Process is running on, if it's in the cluster, it can be communicated with.
   * guard: `is_pid()`
   * Looks like: `<0.39.0>`
 
@@ -154,6 +151,12 @@ Use `erl +t`
 # pid, continued
 
 If the first number in a pid is `0`, then that means the pid is local to the current node.
+
+---
+
+## pids are node-agnostic
+
+![good guy erl-greg](/slideshows/remote-node.jpg)
 
 ---
 
@@ -174,6 +177,10 @@ Received: a_message
 ---
 
 # fun
+
+  * Functions have *arity* (number of arguments).
+
+---
 
 ## Anonymous Function:
 ```erlang
@@ -236,13 +243,187 @@ Received: a_message
 
 # list
 
-  * A list is a linked-list of Erlang terms. 
+  * "A compound data type with a variale number of terms."
   * Each element can have any type.
-  * `[1, 50, Fun, [an, inner, list], "something else"]`
+  * Denoted with square brackets: `[ ]`.
+  * Example: `[1, 50, Fun, [an, inner, list], "something else"]`
+
+---
+
+## Poorly Photoshopped Gandalf Armstrong Says:
+
+![one indexed](/slideshows/one-indexed.jpg)
+
+---
+
+# list representation
+
+![list](/slideshows/list.png)
+
+```erlang
+> List = [5, a, 3.5].
+[5, a, 3.5]
+> hd(List).
+5
+> tl(List)
+[a, 3.5]
+> hd(tl(List))
+a
+> tl(tl(tl(List))).
+[]
+```
+
+---
+
+## Adding an item to the front of a list
+
+```erlang
+> List = [5, a, 3.5].
+[5, a, 3.5].
+> List2 = [6 | List].
+[6, 5, a, 3.5].
+```
+### O(1) Complexity
+
+---
+
+## Adding an item to the end of a list
+
+```erlang
+> List = [5, a, 3.5].
+[5, a, 3.5].
+> List3 = List ++ [bears].
+[5, a, 3.5, bears].
+```
+### O(N) Complexity
+
+---
+
+## Deleting items from a list
+
+```erlang
+> List = [1, 2, 4, 8].
+> ToDelete = [1, 3, 4].
+> List2 = List -- ToDelete.
+[2, 8].
+```
+
+### O(N * M) Complexity
+
+Where:
+
+  * N = `length(List)`
+  * M = `length(ToDelete)`
+---
+
+## List BIFs Usable in guards:
+
+ * `length(List)`
+ * `hd(List)` - Head of the List
+ * `tl(List)` - Tail of the List
+
+---
+
+## Commonly used functions from the lists module:
+ * `lists:reverse(List).`
+ * `lists:nth(N, List).`
+ * `lists:nth_tail(N, List).`
+ * `lists:sort(List)`
+
+---
+
+## Matching List Head and Tail
+
+```erlang
+> List = [a, b, c, d].
+[a, b, c, d]
+> [H | T] = List
+[a, b, c, d]
+> H.
+a
+> T.
+[b, c, d]
+```
+
+---
+
+## Matching List Elements
+
+```erlang
+> List = [a, b, c, d].
+[a, b, c, d]
+> [First, Second, Third, Fourth] = List.
+[a, b, c, d]
+> Second.
+b
+> Fourth.
+d
+```
+
+---
+
+## Matching List Elements and Tail in one match
+
+```erlang
+> List = [a, b, c, d].
+[a, b, c, d]
+> [First, Second | Rest] = List.
+[a, b, c, d]
+> Second.
+b
+> Rest.
+[c, d]
+
+```
+
 
 ---
 
 # tuple
+
+  * "Compound data type with a fixed number of terms" 
+  * A tuple has a specific size.
+  * Denoted with curly brackets: `{ }`
+  * Example: `{coordinate, 5, 10}`
+
+---
+
+# tuple = fixed size
+
+  * You don't resize a tuple like you do a list.
+  * There are no append or prepend operations.
+  * You change the value of specific elements
+
+---
+
+# tuple matching
+
+Tuple matching works like lists, except no `head` or `tail`, meaning no pipe (`|`) operator.
+
+```erlang
+> ThreeD = {coordinate, 5, -10, 55}.
+{coordinate, 5, -10, 55}
+> {coordinate, X, Y, Z} = ThreeD.
+{coordinate, 5, -10, 55}
+> Y.
+-10
+> Z.
+55
+```
+**Note:** the atom `coordinate` is called a `tag`
+
+---
+
+# tuple element and setelement
+
+```erlang
+> ThreeD = {coordinate, 5, -10, 55}.
+{coordinate, 5, -10, 55}
+> X = element(2, ThreeD)
+5.
+> NewThreeD = setelement(3, ThreeD, 200).
+{coordinate, 5, 200, 55}
+```
 
 ---
 
