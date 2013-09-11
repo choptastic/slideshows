@@ -476,6 +476,8 @@ Tuple matching works like lists, except no `head` or `tail`, meaning no pipe (`|
 
 *WHOA INTEGER OVERFLOW*
 
+---
+
 ## constructing binaries (more)
 
 ```erlang
@@ -625,6 +627,8 @@ Record from previous slide, internally, is just:
 
 IOLists are lists of strings and binaries that when traversed, directly translate to a series of bytes to be sent on an I/O device: Printed to screen, Written to Disk, Transmitted over the Network.
 
+---
+
 # iolist
 
   * Fast to assemble: O(1)
@@ -669,6 +673,8 @@ IOLists are lists of strings and binaries that when traversed, directly translat
 > proplists:get_value(name, Character).
 "Legolas".
 
+---
+
 # proplists
 
 `use lists:keyfind/3` for faster lookup than the `proplists` module
@@ -709,15 +715,111 @@ Typespecs are a type of "active documentation" that the compiler recognizes, and
 
 ---
 
-# Custom Types
+## General Typespec Syntax
+
+```erlang
+-spec FUNCTION_NAME(ARG1_TYPES, ARG2_TYPES,...) -> RESULT_TYPES().
+```
+---
+
+## Function Type spec example
+
+```erlang
+-spec multiply(integer(), integer()) -> integer().
+multiply(X, Y) ->
+	X*Y.
+```
 
 ---
 
-# Function Type specs
+## Function Typespec with named arguments
+
+```erlang
+-spec multiply(
+	X :: integer(),
+	Y :: integer()) -> Product :: integer().
+multiply(X, Y) ->
+	X*Y.
+```
+---
+
+## More complicate typespec example
+
+```erlang
+-spec multiply_int_or_string(
+	X :: integer() | string(),
+	Y :: integer() | string()) -> Product :: integer().		
+multiply_int_or_string(X, Y) when is_list(X) ->
+	multiply_int_or_string(list_to_integer(X), Y);
+multiply_int_or_string(X, Y) when is_list(Y) ->
+	multiply_int_or_string(X, list_to_integer(Y));
+multiply_int_or_string(X, Y) when is_integer(X) andalso is_integer(Y) ->
+	X*Y.
+```
+---
+## Built-in Types
+
+  * integer()
+  * float()
+  * binary()
+  * string()
+  * tuple()
+  * list()
+  * atom()
+  * port()
+---
+## Other Type conventions
+
+  * `[atom() | binary()]` : a list of atoms or binaries
+  * `{foo, integer(), string()}`: A tuple where the first element is the atom `foo`, second element is an integer, and the third element is a string.
+  * `#myrec{}` : A record of type `myrec`
 
 ---
 
 # Record Type specs
+
+```erlang
+-record(character, {
+	name	:: string(),
+	class	:: elf | dwarf | wizard | hobbit | human | orc,
+	weapon	:: sword | bow | dagger | staff | club,
+	level   :: integer()
+}).
+```
+---
+## Defining your own types:
+
+```erlang
+-type level() 	:: integer().
+-type class() 	:: elf | dwarf | wizard | hobbit | human | orc.
+-type weapon() 	:: sword | bow | dagger | staff | club,
+-type name()	:: string() | binary().
+-type character() :: #character{}.
+```
+---
+## Bringing it all together
+
+```erlang
+-spec new_character(
+	Name :: name(),
+	Level :: level(),
+	Class :: class()) -> character().
+new_character(Name, Level, Class) ->
+	Weapon = default_weapon(Class),
+	#character{
+		name=Name,
+		level=Level,
+		class=Class,
+		weapon=Weapon
+	}.
+
+-spec default_weapon(class()) -> weapon().
+default_weapon(wizard) -> staff;
+default_weapon(hobbit) -> dagger;
+default_weapon(elf)    -> bow;
+default_weapon(human)  -> sword;
+default_weapon(_)      -> club.
+```
 
 ---
 
