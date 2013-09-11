@@ -673,7 +673,7 @@ IOLists are lists of strings and binaries that when traversed, directly translat
 			].
 > proplists:get_value(name, Character).
 "Legolas".
-
+```
 ---
 
 # proplists
@@ -793,8 +793,8 @@ multiply_int_or_string(X, Y) when is_integer(X) andalso is_integer(Y) ->
 ```erlang
 -type level() 	:: integer().
 -type class() 	:: elf | dwarf | wizard | hobbit | human | orc.
--type weapon() 	:: sword | bow | dagger | staff | club,
--type name()	:: string() | binary().
+-type weapon()	:: sword | bow | dagger | staff | club,
+-type name()    :: string() | binary().
 -type character() :: #character{}.
 ```
 ---
@@ -803,15 +803,12 @@ multiply_int_or_string(X, Y) when is_integer(X) andalso is_integer(Y) ->
 ```erlang
 -spec new_character(
 	Name :: name(),
-	Level :: level(),
 	Class :: class()) -> character().
-new_character(Name, Level, Class) ->
+new_character(Name, Class) ->
 	Weapon = default_weapon(Class),
 	#character{
-		name=Name,
-		level=Level,
-		class=Class,
-		weapon=Weapon
+		name=Name, level=1,
+		class=Class, weapon=Weapon
 	}.
 
 -spec default_weapon(class()) -> weapon().
@@ -821,19 +818,43 @@ default_weapon(elf)    -> bow;
 default_weapon(human)  -> sword;
 default_weapon(_)      -> club.
 ```
+---
+## Cross-module types
+
+Exporting a type for use from other modules:
+
+```erlang
+-export_type([my_type/0]).
+```
+(just like exporting functions).
+
+---
+
+## Using a type from a different module:
+
+```erlang
+-spec myfunction() -> other_module:my_type().
+```	
+
+---
+## Nitrogen's Include
 
 ---
 
 # Dialzyer
 
-Dialyzer is Erlang's static analysis tool.
+## Erlang's static analysis tool.
 
-It looks at functions, modules, and types to find out if there will be any potential errors before runtime:
+### Helps you find:
 
   * Function argument inconsitencies
   * Function return inconsistencies
   * Record attribute inconsistencies
   * Undefined functions in modules
+
+---
+
+## Dialyzer is Kinda Smart
 
 It can infer some type information, but having the typespecs will help you to a bunch.
 
@@ -854,7 +875,7 @@ I find it's best to have a project-specific PLT to avoid any apps stepping on ea
 
 ---
 
-## Running on a single file
+## Running on a source files
 
 You can run dialyzer on a single or several files, if you like:
 
