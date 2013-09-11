@@ -4,12 +4,13 @@ Chicago Erlang User Group
 
 September 11th, 2013
 
-
 Presented by Jesse Gumm
 
 Twitter: [@jessegumm](http://twitter.com/jessegumm)
 |
 Github: [choptastic](http://github.com/choptastic)
+
+These slides will be permanently available at: http://slides.sigma-star.com
 
 ---
 
@@ -824,3 +825,56 @@ default_weapon(_)      -> club.
 ---
 
 # Dialzyer
+
+Dialyzer is Erlang's static analysis tool.
+
+It looks at functions, modules, and types to find out if there will be any potential errors before runtime:
+
+  * Function argument inconsitencies
+  * Function return inconsistencies
+  * Record attribute inconsistencies
+  * Undefined functions in modules
+
+It can infer some type information, but having the typespecs will help you to a bunch.
+
+---
+
+## Running Dialyzer
+
+First build a PLT (Persisetant Lookup Table) for your project (this may take a minute)
+
+```bash
+$ dialyzer --output_plt myproj.plt --built_plt --apps erts kernel stdlib sasl
+
+```
+
+If you leave off the `--output_plt myproj.plt` call, it will store the plt in your home directory.
+
+I find it's best to have a project-specific PLT to avoid any apps stepping on eachothers toes.
+
+---
+
+## Running on a single file
+
+You can run dialyzer on a single or several files, if you like:
+
+```bash
+$ dialyzer my_file.erl my_other_file.erl
+```
+---
+## But more commonly, it's run on your project's beam files.
+
+```bash
+$ dialyzer --plt myproj.plt -r ./ebin
+```
+
+`-r ebin/` means "all files in the ebin directory"
+
+---
+
+## Dialyzer Simplified
+
+Check out Univeral Makefile from Erlware: http://blog.erlware.org/2013/06/04/universal-makefile-for-erlang-projects-that-use-rebar/
+
+---
+# Questions?
