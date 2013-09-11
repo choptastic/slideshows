@@ -461,7 +461,7 @@ Tuple matching works like lists, except no `head` or `tail`, meaning no pipe (`|
 > <<13:4, 1:1, 0:1, 1:1, 0:1>>.
 <<"Ú">>
 ```
-
+---
 
 # constructing binaries
 
@@ -473,6 +473,8 @@ Tuple matching works like lists, except no `head` or `tail`, meaning no pipe (`|
 ```
 
 *WHOA INTEGER OVERFLOW*
+
+---
 
 ## deconstructing binaries
 
@@ -503,6 +505,13 @@ Tuple matching works like lists, except no `head` or `tail`, meaning no pipe (`|
 > B.
 15
 ```
+---
+
+# Non-type types
+
+![cypher non-types](/slideshows/cypher-non-types.jpg)
+
+---
 
 # boolean
 
@@ -522,6 +531,10 @@ Tuple matching works like lists, except no `head` or `tail`, meaning no pipe (`|
 ```erlang
 -record(character, {class, name, weapon}).
 ```
+
+* must be done in a module (or in a header file and included in a module)
+
+---
 
 # record usage
 
