@@ -297,6 +297,8 @@ a
 ```
 ### O(N) Complexity
 
+**NOTE**: `++` is list concatenation operator
+
 ---
 
 ## Deleting items from a list
@@ -453,7 +455,7 @@ Tuple matching works like lists, except no `head` or `tail`, meaning no pipe (`|
 
 ---
 
-# constructing bitstrings
+## constructing bitstrings
 
 *4-bit int, then a few single bits*
 
@@ -463,7 +465,7 @@ Tuple matching works like lists, except no `head` or `tail`, meaning no pipe (`|
 ```
 ---
 
-# constructing binaries
+## constructing binaries
 
 ```erlang
 > <<6,17,23,255>>.
@@ -473,6 +475,23 @@ Tuple matching works like lists, except no `head` or `tail`, meaning no pipe (`|
 ```
 
 *WHOA INTEGER OVERFLOW*
+
+## constructing binaries (more)
+
+```erlang
+> A = <<"bin">>.
+<<"bin">>.
+> B = <<"aries">>.
+<<"aries">>.
+> <<A/binary,B/binary>>
+<<"binaries">>.
+> Space = 32.
+32
+> <<A/binary, Space, B/binary>>.
+<<"bin aries">>
+```
+
+**Note:** `/binary` after the variable tells the compiler this is a binary. Anything else is treated as an integer.
 
 ---
 
@@ -522,7 +541,7 @@ Tuple matching works like lists, except no `head` or `tail`, meaning no pipe (`|
 
 # record
 
-  * compile-time syntactical sugar for named tuple elements.
+Compile-time syntactical sugar for named tuple elements.
 
 ---
 
@@ -532,7 +551,7 @@ Tuple matching works like lists, except no `head` or `tail`, meaning no pipe (`|
 -record(character, {class, name, weapon}).
 ```
 
-* must be done in a module (or in a header file and included in a module)
+  * must be done in a module (or in a header file and included in a module
 
 ---
 
@@ -557,36 +576,136 @@ C#character{name=Name}.
 %% Name, now bound to "Legolas"
 ```
 
+---
+
+# records are just tagged tuples
+
+Record from previous slide, internally, is just:
+
+```erlang
+{character, elf, "Legolas", bow}
+```
+
+---
+
 # record actions
 
   * `is_record(Rec, character).` - usable in guards
+  * Cleaner way using pattern matching `Rec=#character{}`
 
 ---
 
 # string
+  * There is no string type.
+  * A string is just a list of integers that have ASCII representations.
+  * Example: `"hello" =:= [104, 101, 108, 108, 111].`
+
+---
 
 
+## If list contents are ASCII ordinals, the Erlang Shell will print it as a string
+
+`[65, 66, 67]` prints "ABC".
+
+
+**THIS DOES NOT MEAN ERLANG HAS CONVERTED YOUR LIST TO A STRING, IT'S MERELY THE ERLANG SHELL REPRESENTATION**
+
+---
+
+## Working with Strings
+
+  * `string` module
+  * `re` module for regular expressions
+  * "Just Lists" means `++` operator is concatenation operator for strings.
+  * Concatenation is slow: The solution: **IOLISTS**
 
 ---
 
 # iolist
 
+IOLists are lists of strings and binaries that when traversed, directly translate to a series of bytes to be sent on an I/O device: Printed to screen, Written to Disk, Transmitted over the Network.
+
+# iolist
+
+  * Fast to assemble: O(1)
+  * Fast to traverse: O(N)
+  * Contain binaries and lists.
+  * "flattened" with `iolist_to_binary`
+
+---
+
+# iolist example
+
+```erlang
+> A = "Erlang".
+"mystring".,
+> B = <<" is ">>.
+<<" is ">>.
+> C = "fun".
+"fun".
+> AB = [A, B].
+["Erlang", <<" is ">>].
+> ABC = [AB, C].
+[["Erlang",<<" is ">>], "fun"].
+> iolist_to_binary(ABC).
+<<"Erlang is fun">>.
+```
+
 ---
 
 # proplist
 
+  * Proplists are lists of key-value tuples
+  * Commonly used for simple key-value structures
+  * Easy to read
+  * Fast enough with small enough key space
+  
+```erlang
+> Character = [
+				{name, "Legolas"},
+				{class, elf},
+				{weapon, bow}
+			].
+> proplists:get_value(name, Character).
+"Legolas".
+
+# proplists
+
+`use lists:keyfind/3` for faster lookup than the `proplists` module
 
 ---
 
 # Module-specific types: dict, queue, etc
 
+Module-specific types. These are all basically records in their respective code which makes them tuples:
+
+```erlang
+dict:new().
+{dict,0,16,16,8,80,48,
+      {[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},
+      {{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}}
+```
 ---
 
 # Type conversion
 
+  * list_to_binary
+  * binary_to_list
+  * iolist_to_binary
+  * integer_to_list
+  * list_to_integer
+  * list_to_tuple
+  * tuple_to_list
+  * atom_to_list
+  * list_to_atom
+  * float_to_list (better alternative from mochiweb: `mochinum:digits`)
+  * list_to_float
+
 ---
 
 # Typespecs
+
+Typespecs are a type of "active documentation" that the compiler recognizes, and that help to show acceptable function inputs and outputs.
 
 ---
 
