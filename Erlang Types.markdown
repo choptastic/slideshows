@@ -898,4 +898,15 @@ $ dialyzer --plt myproj.plt -r ./ebin
 Check out Univeral Makefile from Erlware: http://blog.erlware.org/2013/06/04/universal-makefile-for-erlang-projects-that-use-rebar/
 
 ---
+
+## Resources
+
+  * **Erlang.org**:
+    * [Data Types](http://www.erlang.org/doc/reference_manual/data_types.html)
+    * [Dialyzer](http://www.erlang.org/doc/man/dialyzer.html)
+  * **Learn You Some Erlang**:
+    * [Types](http://learnyousomeerlang.com/types-or-lack-thereof#for-type-junkies)
+    * [Type Specifications and Dialyzer](http://learnyousomeerlang.com/dialyzer)
+
+---
 # Questions?
