@@ -390,8 +390,7 @@ b
 
 # tuple = fixed size
 
-  * You don't resize a tuple like you do a list.
-  * There are no append or prepend operations.
+  * You typically don't resize a tuple like you do a list.
   * You change the value of specific elements
 
 ---
@@ -424,26 +423,136 @@ Tuple matching works like lists, except no `head` or `tail`, meaning no pipe (`|
 > NewThreeD = setelement(3, ThreeD, 200).
 {coordinate, 5, 200, 55}
 ```
+---
+
+# Other tuple functions
+
+  * `tuple_size(Tuple)`
+  * `erlang:append_element(Tuple, Element)`
+  * `erlang:delete_element(N, Tuple)`
+
+---
+
+# Converting between Lists and Tuples
+
+  * `list_to_tuple(List)`
+  * `tuple_to_list(Tuple)`
 
 ---
 
 # binary
 
-  * A binary is a list of bits and bytes.
-  * `<<[5,10
-
+  * A binary/bitstring is a "chunk of memory".
+  * Some Random Bits: `<<7:3>>` represents `111`.
+  * Full Bytes: `<<1,2,3>>` represents `0000 0001 0000 0002 0000 0003`
+  * Easily deconstructed into lengths of bits and bytes
 
 ---
 
+![wolf](/slideshows/wolf-binaries.jpg)
+
+---
+
+# constructing bitstrings
+
+*4-bit int, then a few single bits*
+
+```erlang
+> <<13:4, 1:1, 0:1, 1:1, 0:1>>.
+<<"Ú">>
+```
+
+
+# constructing binaries
+
+```erlang
+> <<6,17,23,255>>.
+<<6,17,23,255>>
+> <<256>>.
+<<0>>
+```
+
+*WHOA INTEGER OVERFLOW*
+
+## deconstructing binaries
+
+```erlang
+> Bin = <<1,2,3,4,5>>.
+<<1,2,3,4,5>>
+> <<A,B,Rest/binary>> = Bin.
+<<1,2,3,4,5>>.
+> A.
+1
+> B.
+2
+> Rest.
+<<3,4,5>>
+```
+
+---
+
+## deconstructing bitstrings
+
+```erlang
+> Bin = <<127>>.
+<<127>>
+> <<A:4,B:4>> = Bin.
+<<127>>.
+> A.
+7
+> B.
+15
+```
+
 # boolean
+
+  * No actual boolean type
+  * Just the atoms `true` and `false`.
 
 ---
 
 # record
 
+  * compile-time syntactical sugar for named tuple elements.
+
+---
+
+# record definition
+
+```erlang
+-record(character, {class, name, weapon}).
+```
+
+# record usage
+
+```erlang
+%% assign a record
+C = #character{
+    class=elf,
+    name="Legolas",
+    weapon=bow
+}.
+
+%% retrieve a single attribute
+C#character.class.
+
+%% change a value.
+C2 = C#character{weapon=sword}.
+
+%% pattern matching
+C#character{name=Name}.
+%% Name, now bound to "Legolas"
+```
+
+# record actions
+
+  * `is_record(Rec, character).` - usable in guards
+
 ---
 
 # string
+
+
 
 ---
 
