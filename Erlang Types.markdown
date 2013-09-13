@@ -575,7 +575,7 @@ C#character.class.
 C2 = C#character{weapon=sword}.
 
 %% pattern matching
-C#character{name=Name}.
+#character{name=Name} = C.
 %% Name, now bound to "Legolas"
 ```
 
