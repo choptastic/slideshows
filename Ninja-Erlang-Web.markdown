@@ -249,4 +249,18 @@ Homepage: http://zotonic.com
 
 # Contraversy
 
-None that I'm aware of, except maybe that it's a full-featured CMS
+None that I'm aware of, except maybe that it's a full-featured CMS, unless
+you're in to that sort of thing.
+
+---
+
+# Zotonic Resources
+
+Tutorial: http://zotonic.com/docs/0.9/tutorials/index.html
+Mailing List: http://groups.google.com/group/zotonic-developers
+Twitter: [@zotonic](http://twitter.com/zotonic)
+IRC: irc.freenode.net #zotonic
+
+---
+
+# Questions about anything?
