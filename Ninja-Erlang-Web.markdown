@@ -256,10 +256,10 @@ you're in to that sort of thing.
 
 # Zotonic Resources
 
-Tutorial: http://zotonic.com/docs/0.9/tutorials/index.html
-Mailing List: http://groups.google.com/group/zotonic-developers
-Twitter: [@zotonic](http://twitter.com/zotonic)
-IRC: irc.freenode.net #zotonic
+* Tutorial: http://zotonic.com/docs/0.9/tutorials/index.html
+* Mailing List: http://groups.google.com/group/zotonic-developers
+* Twitter: [@zotonic](http://twitter.com/zotonic)
+* IRC: irc.freenode.net #zotonic
 
 ---
 
