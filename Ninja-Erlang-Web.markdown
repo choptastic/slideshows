@@ -6,6 +6,8 @@ Jesse Gumm ([@jessegumm](http://twitter.com/jessegumm))
 
 Wednesday, Sep 25th, 2013
 
+Slides available at http://slides.sigma-star.com
+
 ---
 
 ## Three main "full" Erlang Web Frameworks
@@ -29,16 +31,6 @@ These three frameworks provide additional abstractions like client-side enhancem
 
 These are more server-only architectures. You can build capable sites with
 them, but the client-side stuff is up to you.
-
----
-
-## Simple Bridge
-
-* Used by both Nitrogen and ChicagoBoss
-* Server-abstraction to allow support of most Erlang Server backends behind the full framework.
-* Example Uses:
-	* Run Nitrogen on top of Yaws, Cowboy, Mochiweb
-	* Run ChicagoBoss on top of Mochiweb or Cowboy
 
 ---
 
@@ -75,7 +67,7 @@ Homepage: http://chicagoboss.org
 
 ---
 
-# Contraversy
+# Controversy
 
 * Heavy use of Parameter Modules
 * Lots of parsing trickery
@@ -148,7 +140,7 @@ Homepage: http://nitrogenproject.com
 
 ---
 
-# Contraversy
+# Controversy
 
 * Heavy use of Erlang Records
 * Process dictionary for storing "context"
@@ -209,7 +201,7 @@ body() ->
 		}
 	]}.
 
-event(event) ->
+event(click) ->
 	NewBody = #panel{
 		id=the_replacement,
 		text="Congrats, you did it"
@@ -225,6 +217,16 @@ event(event) ->
 * Twitter: [@nitrogenproject](http://twitter.com/nitrogenproject)
 * Mailing List: https://groups.google.com/d/forum/nitrogenweb
 * IRC: irc.freenode.net #nitrogen
+
+---
+
+## Simple Bridge
+
+* Used by both Nitrogen and ChicagoBoss
+* Server-abstraction to allow support of most Erlang Server backends behind the full framework.
+* Example Uses:
+	* Run Nitrogen on top of Yaws, Cowboy, Mochiweb
+	* Run ChicagoBoss on top of Mochiweb or Cowboy
 
 ---
 
@@ -247,7 +249,7 @@ Homepage: http://zotonic.com
 
 ---
 
-# Contraversy
+# Controversy
 
 None that I'm aware of, except maybe that it's a full-featured CMS, unless
 you're in to that sort of thing.
