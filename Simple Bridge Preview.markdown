@@ -8,19 +8,19 @@ Jesse Gumm (@jessegumm)
 
 ---
 
-## Problem
+# Problem
 
 Erlang has a large number of different webservers, each with its own API
 
 ---
 
-## Solution
+# Solution
 
 Simple Bridge provides unified API for many of them:
 
 ---
 
-## Supported Servers
+# Supported Servers
 
 * Cowboy
 * Inets
@@ -34,9 +34,7 @@ Simple Bridge provides unified API for many of them:
 
 ---
 
----
-
-## What even are websockets?
+# What even are websockets?
 
 * Lightweight
 * Bidirectional
@@ -46,7 +44,7 @@ Replacement for AJAX and Comet/Long polling
 
 ---
 
-## A New Problem
+# A New Problem
 
 Websockets are only natively supported by Cowboy and Yaws.
 
@@ -54,7 +52,7 @@ Again, each with its own API
 
 ---
 
-## A new solution!
+# A new solution!
 
 Simple Bridge gives a unified API for websockets.
 
@@ -62,10 +60,10 @@ Simple Bridge gives a unified API for websockets.
 
 ---
 
-## How is this done?
+# How is this done?
 
 Checks for the websocket headers, and hijacks the socket.
 
 ---
 
-## Demo Time!
+# Demo Time!
