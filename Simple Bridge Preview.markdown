@@ -67,3 +67,13 @@ Checks for the websocket headers, and hijacks the socket.
 ---
 
 # Demo Time!
+
+---
+
+# Questions?
+
+Simple Bridge is Open Source
+
+http://github.com/nitrogen/simple_bridge
+
+Branch for this demo: **ws** (for Websocket)
