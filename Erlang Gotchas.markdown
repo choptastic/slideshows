@@ -185,10 +185,6 @@ If you're going to use pmods, be damn well sure you name your variables well, be
 
 ---
 
-# Adding a program to .app.src doesn't necessary start it
-
----
-
 # Erlang Binaries
 
 * Large binaries stored in a separate "binary heap"
@@ -217,10 +213,6 @@ get_first_100_bytes() ->
 
 ---
 
-# Dialyzer Woes - 2nd cons
-
----
-
 # Erlang structures are 1-indexed
 
 * lists
@@ -232,6 +224,7 @@ get_first_100_bytes() ->
 # Except when they're not
 
 * Array with the `array` module are 0-indexed
+* Binaries are 0-indexed
 
 ---
 
