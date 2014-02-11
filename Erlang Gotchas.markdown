@@ -228,9 +228,9 @@ get_first_100_bytes() ->
 
 ---
 
-# Leaky case statements
+# Leaky case expressions
 
-## Any variables defined in a case statement will be bound outside the case statement.
+## Any variables defined in a case expressions will be bound outside the case expressions.
 
 ---
 
@@ -253,20 +253,14 @@ end
 
 # Partial Solution, if this is a problem
 
-* Wrap clauses with: `fun() -> ... end()`
+* Wrap clauses with: `fun() -> ... end()` (don't do this)
 * Cannot solve that variables are bound by the case match clauses.
 
 ---
 
 # Ideal solution:
 
-* Refactor into multiple function clauses
-
----
-
-# Pattern Matching Woes: Ints, Floats, and Cases
-
-Erlang is not Javascript or PHP: 0 and 0.0 are not the same.
+* Refactor into multiple function clauses (DO THIS)
 
 ---
 
