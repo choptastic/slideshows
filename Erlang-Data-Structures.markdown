@@ -156,10 +156,93 @@ List of two-tuples
 
 ## Maps
 
+### Less Cunmberson variation of record syntax
 
+```
+#{key => value}
 
+vs
+
+#recordtype{key = value}
+```
+---
+
+## Maps
+
+### Pattern matchable
+
+```
+my_function(#{some_key := SomeVal}) ->
+```
+
+`SomeVal` will be bound
 
 ---
 
+## Maps
 
+### Dynamically sized with dynamic keys
+
+```
+%% Assigns the value value to the key 
+maps:put(Key, Value, Map)
+```
+
+Future versions will support variable Keys, like
+```
+MyKey = some_key,
+#{MyKey => MyVal}
+```
+---
+
+## Maps
+
+### Dynamic Key lookup/insert (like dict - not possible with records)
+
+```
+maps:get(Key, Map)
+```
+
+Future versions will again support variable key matching:
+
+```
+MyKey = some_key,
+#{MyKey := SomeVal} = Map
+%% SomeVal will be bound
+```
+---
+
+## Maps
+### Keys can be any type
+
+Not valid (records with tuples as keys)
+```
+#my_record{ {a,b,c}=Value }
+```
+
+Valid (maps)
+```
+#{ {a,b,c} => Value }.
+```
+
+---
 ## Maps: Cons
+
+* Missing some parts of the original design (Variable Keys, Single Element lookup)
+* Has some initial performance issues (not quite as performant as tuples yet)
+* Not compatible with built-in datastores which rely on records (ets, dets, mnesia)
+
+---
+
+## Overview
+
+* Maps are still under development, but improving
+* Maps will slowly replace proplists, dicts, gb\_trees, and some instances of records
+
+---
+
+# Questions?
+
+(these slides available on [slides.sigma-star.com](http://slides.sigma-star.com))
+
+Get Erlang from [erlang.org](http://erlang.org) (Latest 17.1 released a few days ago)
