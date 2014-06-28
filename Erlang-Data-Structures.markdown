@@ -151,6 +151,7 @@ List of two-tuples
 * Dynamically sized with dynamic keys (like dict)
 * Dynamic Key lookup/insert (like dict - not possible with records)
 * Keys can be any type
+* Two Assignment Operators ( `:=` and `=>` )
 
 ---
 
@@ -226,11 +227,43 @@ Valid (maps)
 ```
 
 ---
+## Maps
+### => Assignment Operator
+
+`=>` assigns a value. If key is not defined, define it.
+
+```
+> M = #{a => 1, b => 2}.
+#{a => 1,b => 2}
+> M#{b => a_new_b, c => 3}.
+#{a => 1,b => a_new_b ,c => 3}
+```
+---
+## Maps
+### := Re-assignment Operator
+
+`:=` re-assigns a value only of the key is already defined. Throws an exception if not.
+
+```
+> M = #{a => 1, b => 2}.
+#{a => 1, b => 2}
+> M#{b := a_new_b}.
+#{a => 1,b => a_new_b}
+> M#{c := 3}.
+** exception error: bad argument
+     in function  maps:update/3
+        called as maps:update(c,3,#{a => 1,b => 2})
+     in call from erl_eval:'-expr/5-fun-0-'/2 (erl_eval.erl, line 255)
+     in call from lists:foldl/3 (lists.erl, line 1261)
+```
+
+---
 ## Maps: Cons
 
 * Missing some parts of the original design (Variable Keys, Single Element lookup)
 * Has some initial performance issues (not quite as performant as tuples yet)
 * Not compatible with built-in datastores which rely on records (ets, dets, mnesia)
+* Two assignment operators might take some getting used to (but serve valuable purposes)
 
 ---
 
