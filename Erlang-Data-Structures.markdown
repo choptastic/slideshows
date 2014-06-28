@@ -134,7 +134,7 @@ List of two-tuples
 
 ## Maps!!!
 
-![I know maps](/slideshows/i_know_maps.jpg)
+![I know maps](/slideshows/i_know_map_fu.jpg)
 
 ---
 
