@@ -103,13 +103,13 @@ List of two-tuples
 (`gb_trees` interface exactly the same)
 ---
 
-## Dict (gb_trees) Pros
+## dict/gb_trees Pros
 
 * Fast: O(logN) insertions and lookups
 
 ---
 
-## Dict (gb_trees) Cons
+## dict/gb_trees Cons
 
 * Cannot be pattern matched
 * Not human readable (must be converted with `to_list(Dict)`)
