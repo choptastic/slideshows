@@ -20,7 +20,7 @@ Jesse Gumm ([@jessegumm](http://twitter.com/jessegumm))
 
 ---
 
-### If you want to make games, you needed to make tools
+### If you want to make games, you need to make tools
 
 ## So we made our first apps. [frag=1]
 
@@ -31,7 +31,7 @@ Jesse Gumm ([@jessegumm](http://twitter.com/jessegumm))
 
 ## Interface development
 
-### A great for new programmers to appreciate making something
+### Great for new programmers to appreciate making something
 
 * Logo [frag=1]
 * Visual Basic [frag=1]
@@ -65,7 +65,7 @@ Jesse Gumm ([@jessegumm](http://twitter.com/jessegumm))
 
 * Created by Rusty Klophaus in 2008 [frag=1]
 * I took over in 2011 [frag=2]
-* Soon to be released: Version 2.3.0 [frag=3]
+* Soon to be released: Version 2.3.0 (Adds websockets) [frag=3]
 * Book soon to be released:<br>Build it with Nitrogen: [frag=4]
   http://builditwith.com/nitrogen [frag=4]
 
@@ -160,7 +160,9 @@ event({save, Recordid}) ->
 
 &nbsp;
 
-### No context-shifts. Build whole application with Erlang
+### No context-shifts. Build whole application with Erlang. [frag=1]
+
+(Node brings client-side to the server, Nitrogen brings server-side to the client) [frag=1]
 
 ---
 
@@ -170,14 +172,6 @@ event({save, Recordid}) ->
 # Are you sufficiently blown away?
 
 ![blown-away-granny](/slideshows/blown-away-granny.jpg)
-
----
-
-### So why did I talk about games and visual basic earlier?
-
-## Nitrogen makes interface development accessible in Erlang. [frag=1]
-
-And that's huge for on-ramping new developers to Erlang.
 
 ---
 
@@ -230,7 +224,16 @@ And that's huge for on-ramping new developers to Erlang.
 
 ---
 
+### So why did I talk about games and visual basic earlier?
+
+## Nitrogen makes interface development accessible in Erlang. [frag=1]
+
+And that's huge for on-ramping new developers to Erlang.[frag=1]
+
+---
+
 # Questions?
 
 Ping me on twitter: [@jessegumm](http://twitter.com/jessegumm)
 
+These slides will be available on http://slides.sigma-star.com
