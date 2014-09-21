@@ -163,7 +163,7 @@ Add a SimpleBridge "Handler" (`-behaviour(simple_bridge_handler)`) which defines
 * `ws_terminate(Reason, Bridge)`
 ---
 # Hello World
-```
+```erlang
 -module(demo).
 -behaviour(simple_bridge_handler).
 -export([run/1]).
