@@ -25,7 +25,7 @@ Jesse Gumm ([@jessegumm](http://twitter.com/jessegumm))
 ## So we made our first apps. [frag=1]
 
 * Easier [frag=2]
-* Immediate feedback[frag=3]
+* Instant Gratification[frag=3]
 
 ---
 
@@ -41,7 +41,7 @@ Jesse Gumm ([@jessegumm](http://twitter.com/jessegumm))
 
 &nbsp;
 
-### Immediate feedback is powerful! [frag=2]
+### Instant gratification is powerful! [frag=2]
 
 ---
 
