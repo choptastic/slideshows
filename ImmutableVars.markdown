@@ -265,8 +265,20 @@ Pid ! "Oh what a glorious day".
 
 Embrace `static` keyword.
 
+---
+
 ## Conclusion
 
 Getting used to immutable variables takes time, but as you get more comfortable
 with recursion, it grows on your and helps make your code cleaner, easier to
 read, and easier to debug.
+
+---
+
+# Questions?
+
+I'm writing a book about Erlang Web Dev with Nitrogen: [builditwith.com/nitrogen](http://builditwith.com/nitrogen)
+
+I'm on Twitter: [@jessegumm](http://twitter.com/jessegumm)
+
+These slides are available online at: [slides.sigma-star.com](http://slides.sigma-star.com)
