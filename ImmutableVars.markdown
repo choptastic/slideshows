@@ -8,10 +8,13 @@
 
 ---
 
-## Functional Languages with Immutable Variables
+## Some Well-known Functional Languages with Immutable Variables
 
 * Haskell
 * Erlang and Elixir
+* ML (Standard ML, Caml, OCaml)
+* F# (mostly)
+* Elm
 
 ---
 
