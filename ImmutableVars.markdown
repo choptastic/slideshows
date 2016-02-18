@@ -108,6 +108,8 @@ Req2 = prepare_headers(Req1, Headers),
 Req3 = prepare_body(Req2, Req2)
 ```
 
+---
+
 ## How to embrace immutability? What about loops?
 
 * Recursion
